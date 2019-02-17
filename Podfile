@@ -8,7 +8,7 @@ target 'Xcode-App-Chat-Firebase' do
   # Pods for Xcode-App-Chat-Firebase
   # pod 'Firebase', '~> 5.15.0'
   pod 'Firebase/Core'
-  # pod 'Firebase/Auth'
+  pod 'Firebase/Auth'
   pod 'Firebase/Database'
   # pod 'Firebase/Storage'
   #pod 'Firebase/Messaging'
