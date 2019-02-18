@@ -20,6 +20,7 @@ class TableViewCellMesage: UITableViewCell {
     func setChat(chat:Chat){
         lbUsername.text = chat.userName
         tvText.text = chat.text
+        tvText.layer.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

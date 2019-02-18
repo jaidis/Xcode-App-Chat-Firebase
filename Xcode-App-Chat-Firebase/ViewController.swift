@@ -15,11 +15,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tvChatList: UITableView!
     @IBOutlet weak var nvBarraSuperior: UINavigationBar!
     @IBAction func nvBack(_ sender: UIBarButtonItem) {
-        do {
-            try Auth.auth().signOut()
-        } catch let error {
-            print("Error trying to sign out of Firebase: \(error.localizedDescription)")
-        }
+//        do {
+//            try Auth.auth().signOut()
+//        } catch let error {
+//            print("Error trying to sign out of Firebase: \(error.localizedDescription)")
+//        }
         self.dismiss(animated: true)
     }
     @IBAction func nvDrop(_ sender: UIBarButtonItem) {
@@ -76,10 +76,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
     }
     
-    func dropDatabase(){
-        
-    }
-    
     func loginAnonymous(){
         Auth.auth().signInAnonymously(){
             (user,error) in
@@ -114,6 +110,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cellChat:TableViewCellMesage = tableView.dequeueReusableCell(withIdentifier: "cellChat", for: indexPath) as! TableViewCellMesage
         cellChat.setChat(chat: listOfChatInfo[indexPath.row])
         cellChat.backgroundColor = UIColor.clear
+        if self.userName == cellChat.lbUsername.text{
+            cellChat.tvText.backgroundColor = UIColor.lightGray
+            cellChat.tvText.textColor = UIColor.white
+        }
+        else{
+            cellChat.tvText.backgroundColor = UIColor.darkGray
+            cellChat.tvText.textColor = UIColor.white
+        }
         return cellChat
     }
 }
