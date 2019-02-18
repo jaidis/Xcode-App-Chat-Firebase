@@ -15,7 +15,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tvChatList: UITableView!
     @IBOutlet weak var nvBarraSuperior: UINavigationBar!
     @IBAction func nvBack(_ sender: UIBarButtonItem) {
+        do {
+            try Auth.auth().signOut()
+        } catch let error {
+            print("Error trying to sign out of Firebase: \(error.localizedDescription)")
+        }
         self.dismiss(animated: true)
+    }
+    @IBAction func nvDrop(_ sender: UIBarButtonItem) {
+        self.ref.removeValue()
     }
     
     var userName: String?
@@ -66,6 +74,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
             }
         })
+    }
+    
+    func dropDatabase(){
+        
     }
     
     func loginAnonymous(){
