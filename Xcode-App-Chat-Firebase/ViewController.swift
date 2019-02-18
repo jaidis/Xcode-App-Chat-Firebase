@@ -13,6 +13,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var tf_ChatText: UITextField!
     @IBOutlet weak var tvChatList: UITableView!
+    @IBOutlet weak var nvBarraSuperior: UINavigationBar!
+    @IBAction func nvBack(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true)
+    }
     
     var userName: String?
     var ref = DatabaseReference.init()
@@ -28,7 +32,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func assignbackground(){
-        let background = UIImage(named: "Background")
+        let background = UIImage(named: "BackgroundChat")
         
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -40,6 +44,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.view.sendSubviewToBack(imageView)
         
         tvChatList.backgroundColor = UIColor.clear
+        nvBarraSuperior.backgroundColor = UIColor.clear
     }
     
     func loadChatMessages(){
@@ -82,6 +87,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             "text" : tf_ChatText.text!,
             "postData": ServerValue.timestamp() ] as [String:Any]
         self.ref.child("chat").childByAutoId().setValue(message)
+        tf_ChatText.text = nil
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
